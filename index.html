@@ -6,4 +6,14 @@
 	<p id="python"/>
 
 	<script>document.getElementById("js").innerHTML = "hello from JS!"</script>
+
+	<script>
+var xmlHttp = new XMLHttpRequest();
+var text = "null"
+xmlHttp.onreadystatechange = function() { 
+  document.getElementById("python").innerHTML = xmlHttp.responseText; 
+}
+xmlHttp.open("GET", "http://localhost:8080/hello", true); 
+xmlHttp.send(null);
+	</script>
 </body>
