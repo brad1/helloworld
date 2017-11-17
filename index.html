@@ -4,20 +4,27 @@
 	<p id="html"> hello from html!</p>
 	<p id="js"/>
 	<p id="python"/>
+	<p id="mongo"/>
 
 	<script>document.getElementById("js").innerHTML = "hello from JS!"</script>
 
 	<script>
-test = function(endpoint) {
+
+<!-- start>
+get = function(endpoint, label) {
   var xmlHttp = new XMLHttpRequest();
   var text = "null"
   xmlHttp.onreadystatechange = function() { 
-  document.getElementById("python").innerHTML = xmlHttp.responseText; 
+  document.getElementById(label).innerHTML = xmlHttp.responseText; 
   }
-  xmlHttp.open("GET", "http://localhost:8080/" + endpoint, true); 
+  xmlHttp.open("GET", "http://localhost:8080" + endpoint, true); 
   xmlHttp.send(null);
 }
 
-test("hello");
+get("/hello", "python");
+get("/mongo", "mongo");
+
+<!-- end>
+
 	</script>
 </body>

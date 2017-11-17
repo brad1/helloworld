@@ -1,8 +1,24 @@
-from bottle import route, run, static_file 
+# readme
+# Python 3.6.3
+# mongo 3.4.7
+# pymongo 3.5.1
+# bottle 0.12.13
+
+
+from bottle  import route, run, static_file 
+from pymongo import MongoClient
+import os
 
 @route('/hello')
 def hello():
     return 'hello from python!'
+
+@route('/mongo')
+def mongo_function():
+    mongo = MongoClient('mongodb://localhost:27017/')
+    msg = "hello from mongo! databases : " + str(mongo.database_names())
+    print(msg)
+    return msg
 
 @route('/index')
 def index():
