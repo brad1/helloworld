@@ -1,13 +1,4 @@
 <head>
-</head>
-<body>
-	<p id="html"> hello from html!</p>
-	<p id="js"/>
-	<p id="python"/>
-	<p id="mongo"/>
-
-	<script>document.getElementById("js").innerHTML = "hello from JS!"</script>
-
 	<script>
 
 <!-- start>
@@ -20,11 +11,26 @@ get = function(endpoint, label) {
   xmlHttp.open("GET", "http://localhost:8080" + endpoint, true); 
   xmlHttp.send(null);
 }
-
-get("/hello", "python");
-get("/mongo", "mongo");
-
 <!-- end>
 
 	</script>
+</head>
+<body>
+	
+	<p id="html">hello from html!</p>
+	<p id="js"/>
+	<p id="python">python</p>
+	<p id="mongo">mongo</p>
+	<p id="demo">demo</p>
+
+	<script>
+		document.getElementById("js").innerHTML = "hello from JS!";
+		get("/hello", "python");
+		get("/mongo", "mongo");
+	</script>
+
+	<p> <button onclick='get("/hello", "python")'>check python</button>
+	<p> <button onclick='get("/mongo", "mongo")'>check mongo</button>
+
+
 </body>
