@@ -20,8 +20,16 @@ def mongo_function():
     print(msg)
     return msg
 
-@route('/index')
+@route('/index.html')
 def index():
     return static_file('C:/projects/helloworld/index.html', root="")
+
+@route('/angular.html')
+def angular():
+    return static_file('C:/projects/helloworld/angularjs/angular.html', root="")
+
+@route('/test.html')
+def test():
+    return static_file('C:/projects/helloworld/test.html', root="")
 
 run(host='localhost', port=8080)
