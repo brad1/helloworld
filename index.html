@@ -6,7 +6,9 @@ get = function(endpoint, label, host_port) {
   var xmlHttp = new XMLHttpRequest();
   var text = "null"
   xmlHttp.onreadystatechange = function() { 
-  document.getElementById(label).innerHTML = xmlHttp.responseText; 
+    if(xmlHttp.responseText != "") { 
+      document.getElementById(label).innerHTML = xmlHttp.responseText; 
+    }
   }
   xmlHttp.open("GET", host_port + endpoint, true); 
   xmlHttp.send(null);
@@ -28,15 +30,15 @@ get_ruby = function(endpoint, label) {
 	
 	<p id="html">hello from html!</p>
 	<p id="js"/>
-	<p id="python">python</p>
+	<p id="python">python: no data</p>
 	<p id="ruby">ruby: no data</p>
-	<p id="mongo">mongo</p>
+	<p id="mongo">mongo: no data</p>
 
 	<script>
 		document.getElementById("js").innerHTML = "hello from JS!";
 		get_python("/hello", "python");
 		get_python("/mongo", "mongo");
-		/*get_ruby("/hello", "ruby");*/
+		get_ruby("/hello", "ruby");
 	</script>
 
 	<p> <button onclick='get_python("/hello", "python")'>check python</button>
@@ -44,4 +46,5 @@ get_ruby = function(endpoint, label) {
 	<p> <button onclick='get_ruby("/hello", "ruby")'>check ruby</button>
 
 	<p> <a href="http://localhost:8080/angular.html">AngularJS helloworld</a>
+	<p> <a href="http://localhost:8081/">Ruby helloworld</a>
 </body>
