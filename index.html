@@ -36,11 +36,12 @@ get_ruby = function(endpoint, label) {
 		document.getElementById("js").innerHTML = "hello from JS!";
 		get_python("/hello", "python");
 		get_python("/mongo", "mongo");
-		/* get_ruby("/hello", "ruby"); */
+		/*get_ruby("/hello", "ruby");*/
 	</script>
 
 	<p> <button onclick='get_python("/hello", "python")'>check python</button>
 	<p> <button onclick='get_python("/mongo", "mongo")'>check mongo</button>
+	<p> <button onclick='get_ruby("/hello", "ruby")'>check ruby</button>
 
 	<p> <a href="http://localhost:8080/angular.html">AngularJS helloworld</a>
 </body>
