@@ -28,8 +28,4 @@ def index():
 def angular():
     return static_file('C:/projects/helloworld/angularjs/angular.html', root="")
 
-@route('/test.html')
-def test():
-    return static_file('C:/projects/helloworld/test.html', root="")
-
 run(host='localhost', port=8080)
