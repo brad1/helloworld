@@ -1,4 +1,5 @@
 require 'sinatra'
+require_relative 'ruby/udp.rb'
 
 set :port, 8081
 
@@ -10,6 +11,7 @@ get '/hello' do
   'hello from Ruby!'
 end
  
-post '/hello/udp' do
-  'unimplemented'
+get '/hello/udp' do
+  a = Hello::UDP.new
+  a.execute
 end

@@ -2,24 +2,24 @@
 	<script>
 
 <!-- start>
-get = function(endpoint, label, host_port) {
+get = function(endpoint, label, host_port, prefix) {
   var xmlHttp = new XMLHttpRequest();
   var text = "null"
   xmlHttp.onreadystatechange = function() { 
     if(xmlHttp.responseText != "") { 
-      document.getElementById(label).innerHTML = xmlHttp.responseText; 
+      document.getElementById(label).innerHTML = prefix + xmlHttp.responseText; 
     }
   }
   xmlHttp.open("GET", host_port + endpoint, true); 
   xmlHttp.send(null);
 }
 
-get_python = function(endpoint, label) {
-  get(endpoint, label, "http://localhost:8080");
+get_python = function(endpoint, label, prefix) {
+  get(endpoint, label, "http://localhost:8080", prefix);
 }
 
-get_ruby = function(endpoint, label) {
-  get(endpoint, label, "http://localhost:8081");
+get_ruby = function(endpoint, label, prefix) {
+  get(endpoint, label, "http://localhost:8081", prefix);
 }
 
 <!-- end>
@@ -29,21 +29,22 @@ get_ruby = function(endpoint, label) {
 <body>
 	
 	<p id="html">hello from html!</p>
-	<p id="js"/>
-	<p id="python">python: no data</p>
-	<p id="ruby">ruby: no data</p>
-	<p id="mongo">mongo: no data</p>
+	<p id="js">JS: no data</p>
+	<p id="python">Python: no data</p>
+	<p id="ruby">Ruby: no data</p>
+	<p id="mongo">Mongo: no data</p>
 
 	<script>
 		document.getElementById("js").innerHTML = "hello from JS!";
-		get_python("/hello", "python");
+		/* get_python("/hello", "python");
 		get_python("/mongo", "mongo");
-		get_ruby("/hello", "ruby");
+		get_ruby("/hello", "ruby");*/
 	</script>
 
-	<p> <button onclick='get_python("/hello", "python")'>check python</button>
-	<p> <button onclick='get_python("/mongo", "mongo")'>check mongo</button>
-	<p> <button onclick='get_ruby("/hello", "ruby")'>check ruby</button>
+	<p> <button onclick='get_python("/hello", "python", "Python: ")'>check python</button>
+	<p> <button onclick='get_python("/mongo", "mongo", "Mongo: ")'>check mongo</button>
+	<p> <button onclick='get_ruby("/hello", "ruby", "Ruby: ")'>Ruby: no data</button>
+	<p> <button id=udp onclick='get_ruby("/hello/udp", "udp", "UDP check: ")'>UDP check: no data</button>
 
 	<p> <a href="http://localhost:8080/angular.html">AngularJS helloworld</a>
 	<p> <a href="http://localhost:8081/">Ruby helloworld</a>
