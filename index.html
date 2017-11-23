@@ -2,15 +2,24 @@
 	<script>
 
 <!-- start>
-get = function(endpoint, label) {
+get = function(endpoint, label, host_port) {
   var xmlHttp = new XMLHttpRequest();
   var text = "null"
   xmlHttp.onreadystatechange = function() { 
   document.getElementById(label).innerHTML = xmlHttp.responseText; 
   }
-  xmlHttp.open("GET", "http://localhost:8080" + endpoint, true); 
+  xmlHttp.open("GET", host_port + endpoint, true); 
   xmlHttp.send(null);
 }
+
+get_python = function(endpoint, label) {
+  get(endpoint, label, "http://localhost:8080");
+}
+
+get_ruby = function(endpoint, label) {
+  get(endpoint, label, "http://localhost:8081");
+}
+
 <!-- end>
 
 	</script>
@@ -20,17 +29,19 @@ get = function(endpoint, label) {
 	<p id="html">hello from html!</p>
 	<p id="js"/>
 	<p id="python">python</p>
+	<p id="ruby">Null</p>
 	<p id="mongo">mongo</p>
 	<p id="demo">demo</p>
 
 	<script>
 		document.getElementById("js").innerHTML = "hello from JS!";
-		get("/hello", "python");
-		get("/mongo", "mongo");
+		get_python("/hello", "python");
+		get_python("/mongo", "mongo");
+		/* get_ruby("/hello", "ruby"); */
 	</script>
 
-	<p> <button onclick='get("/hello", "python")'>check python</button>
-	<p> <button onclick='get("/mongo", "mongo")'>check mongo</button>
+	<p> <button onclick='get_python("/hello", "python")'>check python</button>
+	<p> <button onclick='get_python("/mongo", "mongo")'>check mongo</button>
 
 	<p> <a href="http://localhost:8080/angular.html">AngularJS helloworld</a>
 </body>
