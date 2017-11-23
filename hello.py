@@ -7,7 +7,31 @@
 
 from bottle  import route, run, static_file 
 from pymongo import MongoClient
-import os
+
+# static files
+
+@route('/')
+def root():
+    return index()
+
+@route('/python.html')
+def python():
+    return index()
+
+@route('/ruby.html')
+def ruby():
+    return index() 
+
+@route('/index.html')
+def index():
+    return static_file('C:/projects/helloworld/index.html', root="")
+
+@route('/angular.html')
+def angular():
+    return static_file('C:/projects/helloworld/angularjs/angular.html', root="")
+
+
+# endpoints 
 
 @route('/hello')
 def hello():
@@ -20,12 +44,7 @@ def mongo_function():
     print(msg)
     return msg
 
-@route('/index.html')
-def index():
-    return static_file('C:/projects/helloworld/index.html', root="")
 
-@route('/angular.html')
-def angular():
-    return static_file('C:/projects/helloworld/angularjs/angular.html', root="")
+# app
 
 run(host='localhost', port=8080)
